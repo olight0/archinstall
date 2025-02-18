@@ -11,6 +11,6 @@ pacstrap -K /mnt base base-devel git linux linux-firmware intel-ucode grub efibo
 genfstab -U /mnt >> /mnt/etc/fstab
 echo "what is your region (for timezone)"
 read region
-arch-chroot /mnt bash -c 'ln -sf /usr/share/zoneinfo/$region /etc/localtime ; hwclock --systohc ; systemctl enable systemd-timesyncd ; nvim /etc/locale.gen ; nvim /etc/locale.conf ; locale-gen ; grub-install /dev/sda ; nvim /etc/default/grub ; grub-mkconfig -o /boot/grug/grub.cfg ; systemctl enable NetworkManager ; exit'
+arch-chroot /mnt bash -c 'ln -sf /usr/share/zoneinfo/$region /etc/localtime ; hwclock --systohc ; systemctl enable systemd-timesyncd ; nvim /etc/locale.gen ; nvim /etc/locale.conf ; locale-gen ; grub-install /dev/sda ; nvim /etc/default/grub ; grub-mkconfig -o /boot/grub/grub.cfg ; systemctl enable NetworkManager'
 umount -a
 reboot
