@@ -9,8 +9,8 @@ mount --mkdir /dev/sda1 /mnt/boot/efi
 swapon /dev/sda2
 pacstrap -K /mnt base base-devel git linux linux-firmware intel-ucode grub efibootmgr networkmanager neovim
 genfstab -U /mnt >> /mnt/etc/fstab
-read region
 echo "what is your region (for timezone)"
-arch-chroot /mnt -c 'ln -sf /usr/share/zoneinfo/$region /etc/localtime ; hwclock --systohc ; systemctl enable systemd-timesyncd ; nvim /etc/locale.gen ; nvim /etc/locale.conf ; locale-gen ; grub-install /dev/sda ; nvim /etc/default/grub ; grub-mkconfig -o /boot/grug/grub.cfg ; systemctl enable NetworkManager ; exit'
+read region
+arch-chroot /mnt bash -c 'ln -sf /usr/share/zoneinfo/$region /etc/localtime ; hwclock --systohc ; systemctl enable systemd-timesyncd ; nvim /etc/locale.gen ; nvim /etc/locale.conf ; locale-gen ; grub-install /dev/sda ; nvim /etc/default/grub ; grub-mkconfig -o /boot/grug/grub.cfg ; systemctl enable NetworkManager ; exit'
 umount -a
 reboot
